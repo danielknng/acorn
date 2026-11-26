@@ -1,4 +1,4 @@
-<img src="apps/mobile/assets/artwork/acorn.png" width="128" />
+<img src="apps/mobile/assets/artwork/acorn.png" width="128">
 
 # Acorn
 

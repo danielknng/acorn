@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Clipboard from 'expo-clipboard'
 import { File, Paths } from 'expo-file-system'
 import { type ImageProps } from 'expo-image'

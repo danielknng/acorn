@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 // biome-ignore lint/style/noExportedImports: go away
 import * as Sentry from '@sentry/react-native'
 

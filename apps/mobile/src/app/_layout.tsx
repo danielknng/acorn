@@ -1,6 +1,5 @@
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator'
 import { Slot } from 'expo-router'
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { UnistylesRuntime } from 'react-native-unistyles'

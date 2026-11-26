@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as colors from '@radix-ui/colors'
 import { compact } from 'lodash'
 

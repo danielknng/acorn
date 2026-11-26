@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Speech from 'expo-speech'
 import { View } from 'react-native'
 import { StyleSheet } from 'react-native-unistyles'

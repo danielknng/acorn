@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Clipboard from 'expo-clipboard'
 import { useCallback, useRef, useState } from 'react'
 

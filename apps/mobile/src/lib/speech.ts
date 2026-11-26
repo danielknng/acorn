@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Speech from 'expo-speech'
 import { type NativeBoundaryEvent } from 'expo-speech/build/Speech.types'
 

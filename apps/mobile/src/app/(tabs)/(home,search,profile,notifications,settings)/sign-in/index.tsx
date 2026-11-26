@@ -1,5 +1,4 @@
 import { useRouter } from 'expo-router'
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as WebBrowser from 'expo-web-browser'
 import { View } from 'react-native'
 import { StyleSheet } from 'react-native-unistyles'

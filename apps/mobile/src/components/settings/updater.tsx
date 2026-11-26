@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Updates from 'expo-updates'
 import { useRef, useState } from 'react'
 import { View } from 'react-native'

@@ -6,9 +6,10 @@ import { useCallback, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 import { db } from '~/db'
-import { createMore } from '~/hooks/mutations/comments/more'
+import { createMore } from '~/lib/comments'
 import { filterComments } from '~/lib/filtering'
 import { isComment, isPost } from '~/lib/guards'
+import { getParentCommentIds, isHidden } from '~/lib/posts'
 import { queryClient } from '~/lib/query'
 import { addPrefix } from '~/lib/reddit'
 import { createApi } from '~/reddit/api'
@@ -288,38 +289,4 @@ export function updatePost(
       })
     })
   }
-}
-
-function getParentCommentIds(
-  comments: Array<Comment>,
-  commentId: string,
-): Array<string> {
-  const comment = comments.find(
-    (item) => item.type !== 'more' && item.data.id === commentId,
-  )
-
-  if (!comment?.data.parentId) {
-    return []
-  }
-
-  return [
-    comment.data.parentId,
-    ...getParentCommentIds(comments, comment.data.parentId),
-  ]
-}
-
-function isHidden(comments: Array<Comment>, commentId: string) {
-  const comment = comments.find((item) => item.data.id === commentId)
-
-  if (!comment?.data.parentId) {
-    return false
-  }
-
-  const parent = comments.find((item) => item.data.id === comment.data.parentId)
-
-  if (parent && parent.type !== 'more' && parent.data.collapsed) {
-    return true
-  }
-
-  return isHidden(comments, comment.data.parentId)
 }

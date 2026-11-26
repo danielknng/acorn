@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import { Image } from 'expo-image'
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as ImagePicker from 'expo-image-picker'
 import { Controller, useFieldArray } from 'react-hook-form'
 import { View } from 'react-native'

@@ -6,11 +6,8 @@ import { create, type Draft } from 'mutative'
 import { useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
-import {
-  type FeedsQueryData,
-  type FeedsQueryKey,
-} from '~/hooks/queries/communities/feeds'
 import { demo } from '~/lib/common'
+import { getFeedPath } from '~/lib/feeds'
 import { filterPosts } from '~/lib/filtering'
 import { isComment } from '~/lib/guards'
 import { queryClient } from '~/lib/query'
@@ -210,19 +207,6 @@ export function usePosts({
     posts,
     refetch,
   }
-}
-
-function getFeedPath(accountId: string | undefined, id: string) {
-  const feeds = queryClient.getQueryData<FeedsQueryData>([
-    'feeds',
-    {
-      accountId,
-    },
-  ] satisfies FeedsQueryKey)
-
-  return (
-    feeds?.find((item) => item.id === id)?.path ?? `/user/${accountId}/m/${id}/`
-  )
 }
 
 export function updatePosts(

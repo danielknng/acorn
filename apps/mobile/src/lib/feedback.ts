@@ -1,4 +1,3 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Haptics from 'expo-haptics'
 import SoundPlayer from 'react-native-sound-player'
 

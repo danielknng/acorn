@@ -1,7 +1,5 @@
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as Linking from 'expo-linking'
 import { useRouter } from 'expo-router'
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as WebBrowser from 'expo-web-browser'
 import { useCallback } from 'react'
 import { fetch } from 'react-native-nitro-fetch'

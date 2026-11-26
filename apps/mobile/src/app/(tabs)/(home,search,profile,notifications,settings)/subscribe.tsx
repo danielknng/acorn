@@ -4,7 +4,6 @@ import {
   type ProductOrSubscription,
   type ProductSubscription,
 } from 'expo-iap'
-// biome-ignore lint/performance/noNamespaceImport: go away
 import * as WebBrowser from 'expo-web-browser'
 import { orderBy } from 'lodash'
 import { useState } from 'react'

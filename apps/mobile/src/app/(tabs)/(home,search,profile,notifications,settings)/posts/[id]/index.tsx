@@ -113,7 +113,7 @@ export default function Screen() {
 
       let current = list.current?.getFirstVisibleIndex() ?? 0
 
-      for (;;) {
+      while (true) {
         const layout = list.current?.getLayout(current)
 
         if (!layout) {
