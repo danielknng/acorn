@@ -183,6 +183,7 @@
         "HOT": "Hot",
         "NEW": "New",
         "OLD": "Old",
+        "QA": "Q&A",
         "RELEVANCE": "Relevance",
         "RISING": "Rising",
         "TOP": "Top",
@@ -203,7 +204,10 @@
         },
         "type": {
           "all": "All",
+          "following": "Following",
           "home": "Home",
+          "latest": "Latest",
+          "news": "News",
           "popular": "Popular",
           "title": "Feeds"
         },
@@ -695,7 +699,10 @@
           "all": "All",
           "community": "Choose community",
           "feed": "Choose feed",
+          "following": "Following",
           "home": "Home",
+          "latest": "Latest",
+          "news": "News",
           "popular": "Popular",
           "title": "Default feed"
         },

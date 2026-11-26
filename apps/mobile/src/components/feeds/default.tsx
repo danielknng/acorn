@@ -9,7 +9,7 @@ import { glass, iPad } from '~/lib/common'
 import { mitter } from '~/lib/mitt'
 import { FeedTypeColors, FeedTypeIcons } from '~/lib/sort'
 import { usePreferences } from '~/stores/preferences'
-import { type FeedType } from '~/types/sort'
+import { type FeedType, UnsortedFeedType } from '~/types/sort'
 
 import { Icon } from '../common/icon'
 import { IconButton } from '../common/icon/button'
@@ -53,19 +53,23 @@ export function DefaultFeed({ type }: Props) {
         />
       </Stack.Title>
 
-      <Stack.Toolbar placement={iPad ? 'right' : drawerLeft ? 'right' : 'left'}>
-        <Stack.Toolbar.View>
-          <SortIntervalMenu
-            interval={sorting.interval}
-            onChange={(next) => {
-              update(next)
-            }}
-            sort={sorting.sort}
-            style={styles.sort}
-            type="feed"
-          />
-        </Stack.Toolbar.View>
-      </Stack.Toolbar>
+      {UnsortedFeedType.includes(type) ? null : (
+        <Stack.Toolbar
+          placement={iPad ? 'right' : drawerLeft ? 'right' : 'left'}
+        >
+          <Stack.Toolbar.View>
+            <SortIntervalMenu
+              interval={sorting.interval}
+              onChange={(next) => {
+                update(next)
+              }}
+              sort={sorting.sort}
+              style={styles.sort}
+              type="feed"
+            />
+          </Stack.Toolbar.View>
+        </Stack.Toolbar>
+      )}
 
       {iPad ? (
         drawerSticky ? null : (
@@ -100,7 +104,7 @@ export function DefaultFeed({ type }: Props) {
       )}
 
       <PostList
-        community={type === 'home' ? undefined : type}
+        feedType={type}
         interval={sorting.interval}
         listProps={listProps}
         sort={sorting.sort}

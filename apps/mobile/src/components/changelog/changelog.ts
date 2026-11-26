@@ -14,8 +14,10 @@ export const changelog: Changelog = [
   {
     added: [
       'You can *read aloud* the text contents of posts and comments from the menu',
+      'New feeds added: for you, following, latest, news',
     ],
     build: 98,
+    fixed: ['r/all should work again'],
   },
   {
     added: ['FAQ, terms, and privacy links added'],

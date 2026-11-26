@@ -11,9 +11,18 @@ export type PostSort =
 
 // feed
 
-export const FeedType = ['home', 'popular', 'all'] as const
+export const FeedType = [
+  'home',
+  'following',
+  'latest',
+  'news',
+  'popular',
+  'all',
+] as const
 
 export type FeedType = (typeof FeedType)[number]
+
+export const UnsortedFeedType: ReadonlyArray<FeedType> = ['latest', 'news']
 
 // home
 
@@ -45,6 +54,7 @@ export const UserFeedSort = [
   'NEW',
   'TOP',
   'HOT',
+  'CONTROVERSIAL',
 ] as const satisfies ReadonlyArray<enums.ProfileFeedSort>
 
 export type UserFeedSort = (typeof UserFeedSort)[number]
@@ -57,6 +67,7 @@ export const CommentSort = [
   'NEW',
   'OLD',
   'CONTROVERSIAL',
+  'QA',
 ] as const satisfies ReadonlyArray<enums.CommentSort>
 
 export type CommentSort = (typeof CommentSort)[number]
@@ -93,3 +104,9 @@ export const TopInterval = [
 ] as const satisfies ReadonlyArray<enums.PostFeedRange>
 
 export type TopInterval = (typeof TopInterval)[number]
+
+// helpers
+
+export function takesInterval(sort: PostSort) {
+  return sort === 'TOP' || sort === 'CONTROVERSIAL'
+}

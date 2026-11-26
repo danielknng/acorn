@@ -12,6 +12,7 @@ export const SortIcons = {
   HOT: 'flame',
   NEW: 'clock',
   OLD: 'package',
+  QA: 'question',
   RELEVANCE: 'target',
   RISING: 'trend-up',
   TOP: 'ranking',
@@ -25,6 +26,7 @@ export const SortColors = {
   HOT: 'red',
   NEW: 'blue',
   OLD: 'gray',
+  QA: 'teal',
   RELEVANCE: 'green',
   RISING: 'orange',
   TOP: 'gold',
@@ -41,12 +43,18 @@ export const IntervalIcons = {
 
 export const FeedTypeIcons = {
   all: 'infinity',
+  following: 'users-four',
   home: 'house',
+  latest: 'clock',
+  news: 'newspaper',
   popular: 'trend-up',
 } as const satisfies Record<FeedType, IconName>
 
 export const FeedTypeColors = {
   all: 'green',
+  following: 'violet',
   home: 'blue',
+  latest: 'teal',
+  news: 'amber',
   popular: 'red',
 } as const satisfies Record<FeedType, ColorToken>

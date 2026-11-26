@@ -16,8 +16,10 @@ import { useAuth } from '~/stores/auth'
 import {
   type CommunityFeedSort,
   type FeedSort,
+  type FeedType,
   type PostSort,
   type TopInterval,
+  takesInterval,
   type UserFeedSort,
 } from '~/types/sort'
 import { type UserPostsType } from '~/types/user'
@@ -35,6 +37,7 @@ export type PostsQueryKey = [
     accountId?: string
     community?: string
     feed?: string
+    feedType?: FeedType
     interval?: TopInterval
     sort?: PostSort
     user?: string
@@ -47,6 +50,7 @@ export type PostsQueryData = InfiniteData<Page, Param>
 export type PostsProps = {
   community?: string
   feed?: string
+  feedType?: FeedType
   interval?: TopInterval
   query?: string
   sort: PostSort
@@ -57,6 +61,7 @@ export type PostsProps = {
 export function usePosts({
   community,
   feed,
+  feedType,
   interval,
   query,
   sort,
@@ -87,7 +92,7 @@ export function usePosts({
 
       const after = pageParam ?? undefined
 
-      const time = sort === 'TOP' && interval ? interval : undefined
+      const time = takesInterval(sort) && interval ? interval : undefined
 
       if (user) {
         const input = {
@@ -140,21 +145,31 @@ export function usePosts({
         time,
       }
 
-      const { cursor, posts } = await (community === 'all'
-        ? reddit.feeds.all(input)
-        : community === 'popular'
-          ? reddit.feeds.popular(input)
-          : community
-            ? reddit.feeds.community({
-                ...input,
-                name: community,
+      const { cursor, posts } = await (feedType === 'following'
+        ? reddit.feeds.following(input)
+        : feedType === 'latest'
+          ? reddit.feeds.latest({
+              after,
+            })
+          : feedType === 'news'
+            ? reddit.feeds.news({
+                after,
               })
-            : feed
-              ? reddit.feeds.custom({
-                  ...input,
-                  path: getFeedPath(accountId, feed),
-                })
-              : reddit.feeds.home(input))
+            : feedType === 'all' || community === 'all'
+              ? reddit.feeds.all(input)
+              : feedType === 'popular' || community === 'popular'
+                ? reddit.feeds.popular(input)
+                : community
+                  ? reddit.feeds.community({
+                      ...input,
+                      name: community,
+                    })
+                  : feed
+                    ? reddit.feeds.custom({
+                        ...input,
+                        path: getFeedPath(accountId, feed),
+                      })
+                    : reddit.feeds.home(input))
 
       return {
         cursor,
@@ -170,6 +185,7 @@ export function usePosts({
         accountId,
         community,
         feed,
+        feedType,
         interval,
         sort,
         user,

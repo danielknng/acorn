@@ -2,7 +2,9 @@
 
 ## Upcoming
 
+- added: for you, following, latest, news feeds
 - added: text to speech
+- fixed: r/all
 
 ## Build 97
 

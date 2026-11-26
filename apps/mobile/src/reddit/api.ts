@@ -52,6 +52,7 @@ export async function createApi(props?: CreateProps) {
       edgeBucket,
       fetch,
       loid,
+      session: account.cookie,
       token,
     })
   }
@@ -61,6 +62,7 @@ export async function createApi(props?: CreateProps) {
     edgeBucket: account.edgeBucket,
     fetch,
     loid: account.loid,
+    session: account.cookie,
     token: account.token,
   })
 }

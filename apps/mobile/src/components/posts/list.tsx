@@ -45,6 +45,7 @@ type Props = PostsProps & {
 export function PostList({
   community,
   feed,
+  feedType,
   header,
   hidden,
   hideCommunity,
@@ -81,6 +82,7 @@ export function PostList({
   } = usePosts({
     community,
     feed,
+    feedType,
     interval,
     query,
     sort,
