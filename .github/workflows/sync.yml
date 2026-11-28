@@ -1,0 +1,31 @@
+name: Sync fork with upstream
+
+on:
+  schedule:
+    - cron: '0 0,12 * * *' # runs at 00:00 and 12:00 UTC
+  workflow_dispatch:      # lets me trigger it manually too
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add upstream and reset
+        run: |
+          git remote add upstream https://github.com/alizahid/acorn.git
+          git fetch upstream
+          git checkout main
+          cp .github/workflows/sync.yml /tmp/sync.yml
+          git reset --hard upstream/main
+          mkdir -p .github/workflows
+          cp /tmp/sync.yml .github/workflows/sync.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/sync.yml
+          git commit -m "Restore sync workflow"
+          git push origin main --force
